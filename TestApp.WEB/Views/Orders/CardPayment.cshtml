@@ -1,0 +1,56 @@
+﻿@model TestApp.WEB.Models.Orders.OrderViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <partial name="_OrderDetails" model="Model" />
+        </div>
+        <div class="col-6">
+            <form id="payment-form"
+                  data-first-name="@Model.Customer.FirstName"
+                  data-last-name="@Model.Customer.LastName"
+                  data-address="@Model.Customer.Address"
+                  data-shipment-method="@((int)(Model.ShipmentMethod))"
+                  asp-route="defaultPaymentResult"
+                  method="post">
+                <h2>Card info</h2>
+                <input type="hidden" value="false" name="IsSuccessful" id="result-input" />
+                <div class="form-group">
+                    <label for="card-element">
+                        Credit or debit card
+                    </label>
+                    <div id="card-element">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="card-cvc">
+                                CVC
+                            </label>
+                            <div id="card-cvc">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="card-exp">
+                                EXP
+                            </label>
+                            <div id="card-exp">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="card-errors" class="form-group text-danger" role="alert"></div>
+                <div class="form-group">
+                    <button class="form-control btn btn-primary">Submit payment<span class="spinner-border spinner-border-sm" id="card-spinner" role="status" aria-hidden="true"></span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="~/Scripts/card.js"></script>
+}

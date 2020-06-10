@@ -1,0 +1,30 @@
+﻿@model TestApp.WEB.Models.Product.CreateProductViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <h1>Create product</h1>
+            @Html.ValidationSummary()
+        <form asp-route="defaultCreateProductPost" method="post">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" name="Name" id="name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea name="Description" id="description" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="number" step="0.01" min="0" name="Price" id="price" class="form-control" />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="form-control btn btn-primary">Submit</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+﻿@model TestApp.WEB.Models.Orders.OrderViewModel
+
+<div class="container">
+    <h2>Making order</h2>
+    <div class="row">
+        <div class="col-6">
+            <h3>Your basket</h3>
+            <partial name="_OrderDetails" model="Model" />
+        </div>
+        <div class="col-6">
+            <h3>Please, put your credentials</h3>
+            @Html.ValidationSummary()
+            <form asp-route="defaultDoPayment" method="post">
+                <div class="form-group">
+                    <label for="first-name">First Name</label>
+                    <input type="text" name="customer.FirstName" id="first-name" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" name="customer.LastName" id="last-name" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label for="last-name">Address</label>
+                    <input type="text" name="customer.Address" id="address" class="form-control" required />
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Payment method</label>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="PaymentMethod1" name="PaymentMethod" value="@TestApp.Domain.Models.PaymentMethod.Card" required>
+                                <label class="custom-control-label" for="PaymentMethod1">Card</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="PaymentMethod2" name="PaymentMethod" value="@TestApp.Domain.Models.PaymentMethod.Cash" required>
+                                <label class="custom-control-label" for="PaymentMethod2">Cash</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Shipment method</label>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="ShipmentMethod1" name="ShipmentMethod" value="@TestApp.Domain.Models.ShipmentMethod.Сourier" required>
+                                <label class="custom-control-label" for="ShipmentMethod1">Courier</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="ShipmentMethod2" name="ShipmentMethod" value="@TestApp.Domain.Models.ShipmentMethod.Post" required>
+                                <label class="custom-control-label" for="ShipmentMethod2">Post</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="ShipmentMethod3" name="ShipmentMethod" value="@TestApp.Domain.Models.ShipmentMethod.Pickup" required>
+                                <label class="custom-control-label" for="ShipmentMethod3">Pickup</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="form-control btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+﻿@model TestApp.WEB.Models.Product.ShowProductViewModel
+
+@{
+    ViewBag.Title = "title";
+}
+
+<div class="container">
+    <h2>Product info</h2>
+    <a asp-route="defaultEditProductGet" asp-route-productId="@Model.Id" class="btn btn-primary mt-3 mb-3">Edit</a>
+    <div class="row">
+        <div class="col-6">
+            <img class="card-img-top" src="~/Images/hollywood.jpg">
+        </div>
+        <div class="col-4">
+            <div>
+                <dl>
+                    <dt>Name</dt>
+                    <dd>@Model.Name</dd>
+
+                    <dt>Description</dt>
+                    <dd>@Model.Description</dd>
+
+                    <dt>Price</dt>
+                    <dd>@Model.Price</dd>
+                </dl>
+            </div>
+            <div>
+                @Html.ValidationSummary()
+                <form asp-route="defaultAddProductToOrderPost" method="post">
+                    <input type="hidden" name="ProductId" id="productid" value="@Model.Id" />
+                    <div class="form-group">
+                        <label for="Quantity">Quantity</label>
+                        <input type="number" min="1" name="Quantity" id="quantity" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="form-control btn btn-success">Add to basket</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
